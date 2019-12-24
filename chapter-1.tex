@@ -1,0 +1,233 @@
+\documentclass{article}
+\title{Complex Analysis: lecture notes}
+\author{Th\'eophile Cantelobre}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\newtheorem*{defi}{Definition}
+\newtheorem*{note}{Note}
+\newtheorem{exo}{Exercise}
+\newtheorem*{example}{Example}
+\newtheorem*{schema}{Drawing}
+\newtheorem*{thm*}{Theorem}
+
+\begin{document}
+\maketitle
+\section{Introduction}
+\input{introduction}
+
+\newpage
+\section{First sesssion: Complex-differentiability} 
+\subsection*{Contents}
+\begin{enumerate}
+    \item Reminders
+        \begin{enumerate}
+            \item topology: open sets (definition and examples)
+            \item $\mathbb{C}$, $\mathbb{C}$-vector spaces, $\mathbb{C}$-linearity
+            \item (Analysis in $\mathbb{R}$: characterisation of differentiability)
+        \end{enumerate}
+    \item Complex differentiability:
+    \begin{enumerate}
+        \item How do we define complex-differentiabiity? 
+        \item the complex-derivative? 
+        \item the complex-differential? 
+        \item What is the difference between real-differentiability and complex-differentiability?
+     \end{enumerate}
+        
+    \item Complex differentiability in practice
+    \begin{enumerate}
+        \item Usual theorems
+        \item Cauchy-Reimann equations: two formulations
+    \end{enumerate}
+\end{enumerate}
+
+\subsection{Quick reminders}
+
+\subsubsection{Open sets}
+\begin{defi}[Open set]
+    A set $\Omega \subset A$ is open in $A$ when:$ \forall a\in\Omega, \exists r > 0, \forall y \in \mathcal{B}_r(a), y \in \Omega $
+\end{defi}
+
+Alternatively:
+    \begin{itemize}
+        \item $ \forall a\in\Omega, \exists r > 0, \forall y \in A, ||y - a|| < r \implies y \in \Omega $
+        \item $\mathring \Omega = \Omega$
+    \end{itemize}
+In practice:
+\begin{enumerate}
+    \item It can be "clear": the goal of this course is not to show that sets are open. 
+    \item Write $\Omega$ as the inverse image of an open set by a continuous map. For example, the open unit ball is the inverse image of $]0,1[$ by $x\in E \mapsto ||x||$.
+\end{enumerate}
+\begin{schema} Visually, this means you can get as close as you want to the complement of the open set $\Omega$ and your neighbors are still in $\Omega$.
+\end{schema}
+
+\begin{example}
+A few examples of open sets are: $\mathbb{R}$, $\mathbb{C}$, $]0,1[$. $[0,1]$ and $[0,1[$ are not open.
+\end{example}
+
+\subsubsection{The complex plane \& complex functions}
+Definitions and properties:
+\begin{enumerate}
+    \item Definition: $\lbrace x+iy, x\in\mathbb{R}, y\in\mathbb{R} \rbrace$, $i$ such that $i^2=1$.
+    \item Exponential, trigonometric forms: $$\exists R>0, \theta, x+iy = R(\cos\theta + i\sin\theta)=R\exp(i\theta) $$
+    \item Conjugate: $z=x+iy \mapsto \bar z = x - iy$, $z = Re^{i\theta} \mapsto \bar z = Re^{-i\theta}$
+    \item \dots 
+\end{enumerate}
+
+\begin{exo}
+    On the structure of $\mathbb{C}$ as a vector space.
+    \begin{enumerate}
+        \item Show that the complex plane $\mathbb{C}$ is a complex vector space. 
+        \item Give a basis. 
+        \item What changes if we consider it to be a real vector space?
+    \end{enumerate}
+\end{exo}
+
+\begin{exo}
+    Give an example of a $\mathbb{C}$-linear function. Give a counter-example (an $\mathbb{R}$-linear function from $\mathbb{C}$ to $\mathbb{C}$ that is not $\mathbb{C}$-linear.)
+\end{exo}
+
+
+\subsection{Complex-differentiable, derivative and differential}
+In this section, $\Omega$ is an open subset of $\mathbb{C}$.
+
+\begin{defi}[Complex-differentiability \& Derivative]
+    Let $z$ an interior point in $\Omega$. Then, $f$ is \emph{complex-differentiable} at $z$ iff the \emph{complex derivative} of $f$ exists in $\mathbb{C}$, as defined by 
+    $$ f'(z) = \lim_{h\rightarrow 0, h\in\mathbb{C}}\frac{f(z+h) - f(z)}{h} $$ 
+\end{defi}
+
+\begin{note}
+    Let's insist on the $h\in\mathbb{C}$ in the definition. This means that the limit exists no matter the direction from which we are "arriving" in $\mathbb{C}$. Also, no matter the direction, the value is the same.
+\end{note}
+\begin{note}
+    The previous definition is a \emph{local} property. Let's generalize it to $\Omega$ below.
+\end{note}
+
+\begin{defi}[Holomorphic]
+    $f: \mathbb{C} \rightarrow \mathbb{C}$ is \emph{holomorphic} if $\forall z\in\Omega$, it is \emph{complex-differentiable}, i.e. \emph{complex-differentiable everywhere.}
+\end{defi}
+ 
+\begin{example} Some examples of holomorphic functions. Also, a counter-example.
+    \begin{itemize}
+        \item Some "obvious" examples: constant functions, identity, affine, \dots
+        \item ($\star$) Show the inverse function is holomorphic where it is defined. 
+        \item ($\star$) A counter example: the complex conjuguate function is nowhere complex-differentiable.
+    \end{itemize}
+\end{example}
+
+\begin{defi}
+    Let $f: A\subset \mathbb{C} \rightarrow\mathbb{C} $.
+
+    Let $z\in A$ as interior point. 
+
+    We define the \emph{complex-differential} (or $\mathbb{C}$-differential) of $f$ in $z$ a complex-linear, continous operator $df_x: \mathbb{C} \rightarrow \mathbb{C} $ that verifies:
+        $$ \lim_{h\rightarrow 0, h\in\mathbb{C}}\frac{||f(z+h) - f(z) - df_z(h)||}{||h||} = 0 $$ 
+    Equivalently:
+        $$ f(z+h) = f(z) + df_z(h) + o(h) $$ 
+\end{defi}
+\begin{note}
+    Recall that $$g(h) = o(h) \iff \lim_{h\rightarrow 0}\frac{g(h)}{h} =0 $$
+\end{note}
+\begin{note}
+    This result extends to $f : E \rightarrow F$ where $E$ and $F$ are complex, normed vector spaces. For example, $\mathbb{C}^n$.
+\end{note}
+
+
+Now, an important theorem that reflects the structure of $\mathbb{C}$:
+\begin{thm*}
+    Let $f: A \subset\mathbb{C} \rightarrow \mathbb{C}$. Let $z \in \mathring A$. 
+    
+    The complex-differential of $f$ $df_z$ exists iff the derivative $f'(z)$ exists.
+    
+    In this case, we have:
+    $$\forall h \in \mathbb{C}, df_z(h) = f'(z)h$$
+\end{thm*}
+
+\begin{note}
+    This is linked to our view of $\mathbb{C}$ as a complex vector space, of dimension $1$.
+\end{note}
+
+\subsection{Complex-differentiability in practice}
+
+\subsubsection{Calculus}
+\begin{itemize}
+    \item $\mathbb{C}$-linear combination
+    \item Product
+    \item Chain rule
+    \item Quotient
+    \item Polynomials
+    \item Rational fractions
+\end{itemize}
+
+In practice: \emph{calculate like in $\mathbb{R}$}.
+
+These "usual" properties allow us to verify that functions are $\mathbb{C}$-differentiable or holomorphic easily, when they are products and compositions (for example).
+
+\subsubsection{Cauchy-Reimann Equations}
+
+We can rephrase the definitions as:
+\begin{thm*}
+$f$ is complex differentiable on $\Omega$ if and only if both:
+\begin{enumerate}
+    \item $f$ is real-differentiable on $\Omega$ (i.e. its differential exists, but maybe isn't $\mathbb{C}-linear$)
+    \item its real-differential is $\mathbb{C}$-linear.
+\end{enumerate}
+\end{thm*}
+
+But the second condition is not easy to prove without expliciting the differential. The Cauchy-Riemann equations offer an alternative formulation of this condition.
+
+The intuition behind the theorem is to look at what happens to the real and imaginary parts of $f$ when we move the real and imaginary parts of $z$
+
+If we write:
+\begin{enumerate}
+    \item if $f: \mathbb{C} \rightarrow \mathbb{C}$, we have $u: \mathbb{C} \rightarrow \mathbb{R}$ and $v: \mathbb{C} \rightarrow \mathbb{R}$ such that:
+$$ \forall z \in \mathbb{C}, f(z) = u(z) + iv(z)$$
+Of course, $u$ and $v$ are the real and imaginary parts of $f(z)$.
+
+\item and, notice a similar property about $z$:  $$\forall z \in \mathbb{C}, z = x + iy$$ where $x$ and $y$ are the imaginary parts of $z$.
+\end{enumerate}
+
+we can then study the following quantities:
+\begin{itemize}
+    \item $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$
+\item $\frac{\partial u}{\partial x}$, $\frac{\partial v}{\partial x}$, $\frac{\partial u}{\partial y}$ and $\frac{\partial v}{\partial y}$
+\end{itemize}
+
+
+\begin{thm*}[Cauchy-Riemann Equations]
+$f$ is complex differentiable on $\Omega$ if and only if both:
+\begin{enumerate}
+    \item $f$ is real-differentiable (i.e. its differential exists, but maybe isn't $\mathbb{C}-linear$)
+    \item its real-differential is $\mathbb{C}$-linear.
+\end{enumerate}
+
+The second condition (2) can be replaced by one of the following properties:
+
+\begin{enumerate}
+    \item[(a)] $ \forall z, df_z(i) = idf_z(1)$
+    \item[(b)] $f$ verifies the \textbf{complex Cauchy-Riemann equation}:
+        $$ \frac{\partial f}{\partial x} = \frac{1}{i}\frac{\partial f}{\partial y}$$
+    \item[(b)] $f$ verifies the \textbf{scalar Cauchy-Riemann equations}:
+        $$ \frac{\partial u}{\partial x} = +\frac{\partial v}{\partial y}$$
+        $$ \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}$$
+\end{enumerate}
+\end{thm*}
+
+\begin{thm*}[Cauchy-Riemann Equations (alternate)]
+$f$ is complex differentiable on $\Omega$ if and only if one of the following conditions hold:
+
+\begin{enumerate}
+    \item[(a)] 
+        $ \frac{\partial f}{\partial x}$ and $ \frac{\partial f}{\partial y}$ exist, are \textbf{continuous} and verify the \textbf{complex Cauchy-Riemann equation}
+        $$ \frac{\partial f}{\partial x} = \frac{1}{i}\frac{\partial f}{\partial y}$$
+    \item[(b)] $\frac{\partial u}{\partial x}$, $\frac{\partial v}{\partial x}$, $\frac{\partial u}{\partial y}$ and $\frac{\partial v}{\partial y}$ exist, are \textbf{continous} and verify the \textbf{scalar Cauchy-Riemann equations}
+        $$ \frac{\partial u}{\partial x} = +\frac{\partial v}{\partial y}$$
+        $$ \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}$$
+\end{enumerate}
+\end{thm*}
+\begin{exo}[$\star$]
+    Show that the complex exponential and logarithm maps are holomorphic where they are defined.    
+\end{exo}
+
+\end{document}
