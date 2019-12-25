@@ -230,4 +230,281 @@ $f$ is complex differentiable on $\Omega$ if and only if one of the following co
     Show that the complex exponential and logarithm maps are holomorphic where they are defined.    
 \end{exo}
 
+\newpage
+\section{Second sesssion: Line Integrals \& Primitives} 
+The goal of this chapter is to derive an equivalent to the fundamental theorem of calculus for functions of a complex variable.
+
+Recall that is $\mathbb{R}$ one generally uses a rectangular approximation along the segment one integrates over. In $\mathbb{C}$, the principle is the same: we'll present how we can build paths on $\mathbb{C}$ and then how we can integrate over them by approximating the paths.
+\subsection*{Contents}
+\begin{enumerate}
+    \item \dots
+        
+\end{enumerate}
+
+\subsection{Paths}
+\subsubsection{Definition, Vocabulary \& Examples}
+\begin{defi}[Path]
+    A path is a continuous function from $[0, 1]$ to $\mathbb{C}$.
+\end{defi}
+
+\begin{note}
+    The intuition behind a path is that it is parametrized by time, or another variable independent of the complex plane.
+\end{note}
+
+\begin{exo}[Unit circle]
+    Give a path whose image is the unit circle.
+\end{exo}
+
+\begin{exo}[Straight line]
+    Give a path such that $\gamma(0) = a$ and $\gamma(1) = b$ where $a, b \in \mathbb{C}$. 
+\end{exo}
+
+\begin{note}
+    Paths are oriented!
+\end{note}
+
+\begin{exo}[Reverse path]
+    Given a path $\gamma$ how would you describe its reverse path $\gamma^{\leftarrow}$.
+\end{exo}
+
+
+\subsubsection{Image of a path}
+\begin{defi}[Image of a path]
+    The image (or trajectory, or trace) of a path $\gamma$ is $\gamma([0,1])$, all the points reached by the path.
+\end{defi}
+
+\begin{defi}[Path on a subset]
+    A path is \emph{on $A\subset\mathbb{C}$} if its image is a subset of $A$, i.e. $\gamma([0,1])\subset A$.
+\end{defi}
+
+\begin{exo}
+    The image of a path is compact.
+\end{exo}
+
+\begin{proof}[Solution]
+    $\gamma$ is continuous and $[0,1]$ is compact (closed and bounded, in a finite dimensional space), so $\gamma([0,1])$ is compact.
+\end{proof}
+
+\subsubsection{Path concatenation}
+
+Here we present the vocabulary and properties necessary to build more complex paths.
+\begin{defi}[Consecutive paths]
+    Two paths $\gamma_1$ and $\gamma_2$ are consecutive if $\gamma_1(1) = \gamma_2(0)$, i.e. if $\gamma_1$ terminates (terminal point) where $\gamma_2$ begins (initial point).
+\end{defi}
+
+\begin{defi}[Path concatenation]
+    Let $t_0=0 < t_1 < \dots < t_{n-1} < 1=t_n $ be a partition of $[0,1]$ (these are our endpoints).
+
+    Let $\gamma_1$, \dots, $\gamma_n$ $n$ consecutive paths (these are the paths.)
+
+    The concatenation of $\gamma_1, \dots, \gamma_n$ associated to the partition $t_0, \dots, t_{n-1}$ is the path $\gamma$ uniquely defined such that:
+    \boxed{
+    $$ \forall k \in \lbrace0, \dots, n-1\rbrace, \gamma_{|[t_{k-1}, t_{k}]}= \gamma_k\left( \frac{t-t_{k-1}}{t_k - t_{k-1}} \right)$$
+}
+    We denote it:
+    $$ \gamma_1 |_{t_1} \dots |_{t_{n-1}} \gamma_n$$
+\end{defi}
+
+We can simplify notations if the partition is uniform (i.e. $t_k = k/n$):
+    $$ \gamma_1 | \dots | \gamma_n$$
+
+\begin{example}[Oriented Polyline]
+    An oriented polyline is the concatenation of consecutive oriented line segments. We denote them:
+    $$[a_0 \rightarrow \dots \rightarrow a_n]$$
+    where $(a_0, \dots, a_n)\in\mathbb{C}^n$ are "the endpoints".
+\end{example}
+
+\subsubsection{Paths \& Regularity}
+
+Until now, the paths we've described were "only" continuous. Integrating over paths is like using changes of variable. Recall that is real analysis, changes of variable generally need to be $\mathcal{C}^1$. Here we define analogous tools in $\mathbb{C}$.
+
+\begin{defi}
+    A path is rectifiable if it is piece-wise continuously differentiable, i.e. it is differentiable and its differential is continuous.
+\end{defi}
+
+\begin{note}[Continuous differential]
+    Let's clarify the meaning of continuous in this case. For this, recall that $f$'s differential at a point $z$ is a linear operator $df_z$. This operator is continuous with respect to its argument, i.e. $h \mapsto df_z(h)$ is continuous.
+
+    A function $f$ is continously differentiable if the map $z \mapsto df_z$ is continuous.
+
+    In the case of paths, this comes down to the path being differentiable and its derivative being continuous.
+\end{note}
+
+\begin{note}
+    There are no conditions on the differentials at the boudaries "between pieces".
+\end{note}
+
+\begin{example}
+    An oriented polyline is rectifiable.
+\end{example}
+
+\begin{thm*}[Continuously differentiable decomposition]
+    A path $\gamma$ is rectifiable if and only if there are $\gamma_1, \dots, \gamma_n$ consecutive continuously differentiable paths and a partition $(t_1, \dots, t_{n-1})$ of $[0,1]$ such that:
+    $$\gamma = \gamma_1 |_{t_1} \dots |_{t_{n-1}} \gamma_n$$
+\end{thm*}
+
+\subsubsection{Connected sets}
+
+\begin{defi}
+    An open subset $\Omega$ of $\mathbb{C}$ is (path-)connected if for any points $x,y \in \Omega^2$, there is a path on $\Omega$ that joins $x$ and $y$. 
+\end{defi}
+
+\begin{example}
+    
+    Some connected open sets:
+    \begin{itemize}
+        \item $\mathbb{C}$
+        \item $\mathcal{B}_0(r)$
+        \item \dots
+    \end{itemize}
+    Some open, disconnected sets:
+    \begin{itemize}
+        \item $\mathbb{C} -\mathbb{R}i$
+        \item $\mathcal{B}_0(r) - \lbrace 0 \rbrace$
+        \item \dots
+    \end{itemize}
+\end{example}
+
+\begin{thm*}
+    An open subset $\Omega$ of the complex plane is connected if and only if every pair of points can be joined by a rectifiable path of $\Omega$.
+\end{thm*}
+
+\begin{proof}[Sketch of the proof]
+    $\gamma([0,1])$ is compact and $\mathbb{C} - \Omega$ is closed. Thus the difference between the two is strictly positive. By uniform continuity of $\gamma$ we can build an oriented polyline that approximates it while staying within $\Omega$ (same technique as is $\mathbb{R}$). The polyline is a rectifiable path on $\Omega$.
+\end{proof}
+
+\subsection{Line Integrals}
+In this section, we define the line integral of $f:\mathbb{C} \rightarrow \mathbb{C}$ over a rectifiable path $\gamma$ as the integral over $[0,1]$ of $f\circ\gamma \times \gamma'$.
+
+\begin{defi}
+    The line integral along a rectifiable path $\gamma$ of $f:\mathbb{C} \rightarrow \mathbb{C}$, continuous over $\gamma([0,1])$ is:
+
+    $$ \int_\gamma f(z)dz = \int_0^1 f(\gamma(t))\gamma'(t)dt$$
+\end{defi}
+
+\begin{note}
+    We deliberately overlook the fact that $\gamma$ is only rectifiable and thus $\gamma'$ is undefined at a finite number of points (almost everywhere). 
+\end{note}
+
+This gives us a way of explicitly calculating line integrals! We won't be doing (too) much of that here. However, let's look at a few examples.
+
+\begin{defi}[Length of a rectifiable path]
+    The length of a rectifiable path $\gamma$ is 
+    $$ \ell(\gamma) = \int_0^1 |\gamma'(t)|dt$$
+\end{defi}
+
+\begin{note}
+    Because of the derivative, the "position" of $\gamma$ in the complex plane has no impact on the length of the path... this is what we'd expect!
+\end{note}
+
+\begin{exo}[$\star$]
+    Calculate the length of a line segment. 
+\end{exo}
+\begin{exo}[$\star$]
+    Show that $\ell(\gamma) = \ell(\gamma^{\leftarrow})$.
+    If $\gamma = \gamma_1 |_{t_1} \dots |_{t_{n-1}} \gamma_n$ a concatenaiton of consecutive, rectifiable paths, show that:
+    $$ \ell(\gamma) = \sum_k{\ell(\gamma_k)}$$
+\end{exo}
+\begin{exo}[$\star$]
+    If $\gamma = \gamma_1 |_{t_1} \dots |_{t_{n-1}} \gamma_n$ a concatenaiton of consecutive, rectifiable paths, show that:
+    $$ \ell(\gamma) = \sum_k{\ell(\gamma_k)}$$
+\end{exo}
+\begin{exo}[$\star$]
+    Calculate the length of an oriented circle of radius $r$ and with $n$ traversals.
+\end{exo}
+\begin{exo}
+    Give a parametrization for the line integral of $f$ over $[a \rightarrow b]$.
+\end{exo}
+\begin{exo}
+    Give a parametrization for the line integral of $f$ over the oriented circle of radius $r$, of center $0$ and in the positive direction. And with $n$ traversals?
+\end{exo}
+
+
+\subsubsection{Line integral calculus}
+\begin{description}
+    \item[Complex-linearity] $$\int_\gamma \alpha f + \beta g dz = \alpha \int_\gamma fdz + \beta \int_\gamma gdz$$
+    \item[Integration along a reverse path] $$\int_\gamma fdz = - \int_{\gamma^{\leftarrow}}fdz$$
+    \item[Integration over a concatenation] If $\gamma = \gamma_1 |_{t_1} \dots |_{t_{n-1}} \gamma_n$ a concatenaiton of consecutive, rectifiable paths, $\gamma$ is rectifiable and:
+        $$\int_\gamma fdz = \sum_k \int_{\gamma_k}fdz$$
+\end{description}
+
+\subsubsection{Reparametrization \& Changes in variables in line integrals}
+Here, we present two useful properties of line integrals: first, that we can reparametrize the path along which we are integrating (i.e. scale time) without changing the value of the integral; second, that we can apply classical change in variable formulas under certain conditions.
+
+\begin{thm*}[Invariance by reparametrization]
+Let $f: \mathbb{C} \rightarrow \mathbb{C}$ is a continuous function, and $\gamma$ a continuously differentiable path.
+
+Let $\phi: [0,1] \rightarrow [0,1]$ an increasing-$\mathcal{C}^1$-diffeomorphism, i.e such that:
+\begin{itemize}
+    \item $\phi$ is continuously differentiable
+    \item $\phi$ is increasing (i.e. $\phi'(t) > 0$)
+    \item $\phi(0) = 0$ and $\phi(1)=1$.
+\end{itemize}
+
+Then, if $\mu = \gamma \circ \phi$:
+\begin{enumerate}
+    \item $\mu$ is a continuously differentiable path with the same endpoints and image as $\gamma$.
+    \item $\ell(\mu) = \ell(\gamma)$
+    \item The line integrals of $f$ over $\mu$ and $\gamma$ are equal:
+        $$ \int_\mu fdz = \int_\gamma fdz $$
+\end{enumerate}
+\end{thm*}
+
+\begin{note}
+    The intutition behind this is that a path is a trajectory on the complex plane, for example, that of a robot. If two robots follow the same path at different speeds but leave and arrive simulataneously, their distances traveled are the same, and they've covered the same ground.
+\end{note}
+
+Now let's show that the usual change of variable formula holds in complex analysis:
+
+\begin{thm*}[Changes of variables in line integrals]
+    Let $\Omega$ be an open subset of $\mathbb{C}$.
+
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function.
+
+    Let $g: f(\gamma([0,1])) \rightarrow \mathbb{C}$ a continuous function.
+
+    Then,
+    \begin{enumerate}
+        \item $f\circ gamma$ is a rectifiable path.
+        \item The following change of variables holds:
+            $$\int_{f \circ \gamma}g(z)dz = \int_\gamma g\circ f(z)f'(z)dz$$
+    \end{enumerate}
+
+\end{thm*}
+
+\subsubsection{ML-Inequality \& Convergence}
+
+An important consequence of the triangular inequality is that the (line) integral can be bounded by the product of the maximum of the integrand and the length of the path (or segment) one integrates over.
+
+In complex analysis, we have the following important result:
+
+\begin{thm*}[M-L Inequality]
+    Let $\gamma$ be a rectifiable path.
+
+    Let $f: A\subset\mathbb{C} \rightarrow \mathbb{C}$ a continuous function.
+
+    Then, 
+    \boxed{$$\left\| \int_\gamma f \right\| \leq \max_{z\in \gamma([0,1])}{\| f(z)\|} \times \ell(\gamma)$$}
+\end{thm*}
+
+\begin{proof}
+    Use the triangular inequality.
+\end{proof}
+
+Thanks to this inequality, we can prove that the line integrals of an uniform approximation $f_n$ of $f$ converge towards the the line integral of $f$, as in $\mathbb{R}$.
+
+\begin{thm*}
+    For any rectifiable path $\gamma$ and uniform approximation $f_n$ of $f$ a continuous function (i.e. $\lim_{n\rightarrow \infty}\left\| f_n -f \right \|_{\infty} = 0$), 
+    $$ \lim_{n\rightarrow\infty} \int_\gamma f_n(z)dz = \int_\gamma f(z)dz $$
+\end{thm*}
+
+\subsection{Primitives}
+
+Now that we have defined line integrals, we can identify the main difficulty of defining a primitive of a complex function: the integral depends on the the path use to integrate over! However, derivation is a very local property that does not know what happens far from the derivation point. For these reasons, the fundamental theorem of analysis over $\mathbb{R}$ is ambiguous. Here we adapt it, which yields important results about holomorphic functions.
+
+\begin{defi}
+    A primitive of a continuous function $f$ defined on a open subset $\Omega$ of $\mathbb{C}$ is a holomorphic function defined on $\Omega$ such that $g'=f$.
+\end{defi}
+
+
 \end{document}
