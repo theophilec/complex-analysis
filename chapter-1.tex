@@ -614,16 +614,17 @@ We can now define connectedness:
     Every path-connected set is connected.
 \end{thm*}
 
+\begin{proof}[Proof sketch $(\implies)$]
+    Take $z, w \in B$ a dilation of $A$. There is $a, b \in A$ such that $z\in D_a$ and $w\in D_b$.
+    As in the drawing, there is a path from $z$ to $a$ in $D_a$, and path from $b$ to $w$. Because $A$ is path-connected, there is a path from $a$ to $b$ in $A$. 
+\end{proof}
+
 \begin{thm*}[Open, connected $\implies$ path-connected]
     Every open, connected set is path-connected.
 \end{thm*}
 
 Let's quickly prove this theorem with a drawing:
 
-\begin{proof}[Proof sketch $(\implies)$]
-    Take $z, w \in B$ a dilation of $A$. There is $a, b \in A$ such that $z\in D_a$ and $w\in D_b$.
-    As in the drawing, there is a path from $z$ to $a$ in $D_a$, and path from $b$ to $w$. Because $A$ is path-connected, there is a path from $a$ to $b$ in $A$. 
-\end{proof}
 \begin{proof}[Proof sketch $(\impliedby)$, not as pedagogical]
     Show that it is legitimate to write $A$ as a dilation of itself.
 \end{proof}
@@ -700,5 +701,73 @@ The following concept will be useful in the future.
     A set $A$ is connected if and only if every locally constant function defined on $A$ is constant.
 \end{thm*}
 
+\newpage
+\section{Fourth Session: Cauchy's integral theorem}
+More so than the other chapters, this chapter is very condensed compared to the textbook. This is mainly because the textbook gives proofs for all the theorems presented.
+
+We will skip the intermediate results and only present the results we need in subsequent chapters. Time-permitting, we can take a look at the different steps of the proof.
+
+\begin{thm*}[Cauchy's integral theorem -- star-shaped version]
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function where $\Omega$ is an open star-shaped subset of $\mathbb{C}$.
+
+    For any rectifiable closed path $\gamma$ of $\Omega$:
+
+    $$ \int_\gamma f(z)dz = 0 $$
+\end{thm*}
+
+Recall the definition of star-shaped:
+
+\begin{defi}[Star-shaped set]
+    A open set $\Omega$ is star-shaped if there exist at least one point $c\in\Omega$ such that for all other points $z$ in $\Omega$, the segment $[c, z]$ is included in $\Omega$.
+\end{defi}
+
+\subsection*{Consequences of Cauchy's Integral Theorem}
+CIT gives many interesting corollaries that are useful in practice.
+
+
+\begin{thm*}[Cauchy's Integral Formula for Disks]
+    Let $\Omega$ be an open subset of the complex plane. 
+
+    Let $\gamma = c + r[C_+]$ be an oriented circle such that $B_f(c, r) \subset \Omega$.
+
+    For any holomorphic function $f: \Omega \rightarrow \mathbb{C}$, 
+
+    $$\forall z\in\mathcal{B}_f(c, r), f(z) = \frac{1}{2i\pi}\int_\gamma \frac{f(w)}{w - z}dw$$
+\end{thm*}
+
+\begin{proof}
+    You'll prove this theorem during the problem session.
+\end{proof}
+
+\begin{thm*}[Morera's theorem -- characterisation of holomorphy]
+    Let $\Omega$ be an open subset of the complex plane. 
+
+    A function $f: \Omega \rightarrow \mathbb{C}$ is holomorphic if and only if:
+
+    \begin{itemize}
+        \item it is continuous
+        \item locally, its line integrals along rectifiable closed paths are zero.
+    \end{itemize}
+
+    In other words, if and only if: for any $c\in\Omega$, there is an $r > 0$ such that $D(c, r) \in \Omega$ and for any rectifiable closed path $\gamma$ of $D(c,r)$,
+    $$\int_\gamma f(z)dz = 0 $$
+\end{thm*}
+
+\begin{proof}
+    You'll prove this theorem during the problem session.
+\end{proof}
+
+\begin{thm*}[Uniform limit of Holomorphic functions]
+    Let $\Omega$ be an open subset of the complex plane. 
+
+    If $f_n: \Omega \rightarrow \mathbb{C}$ a sequence of holomorphic functions converges loclly uniformly to a function $f: \Omega \rightarrow \mathbb{C}$, then $f$ is holomorphic.
+
+    In other words, if $\forall c\in\Omega, \exists r > 0, D(c,r) \subset \Omega$ and 
+
+    $$ \lim_{n\rightarrow \infty}\left\| f_n - f \right \|  = 0$$
+
+\end{thm*}
+
+Finally,
 
 \end{document}
