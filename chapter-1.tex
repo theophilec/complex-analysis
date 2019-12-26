@@ -1,8 +1,10 @@
 \documentclass{article}
 \title{Complex Analysis: lecture notes}
 \author{Th\'eophile Cantelobre}
+\usepackage[margin=1.0in]{geometry}
 \usepackage{amsmath}
 \usepackage{amsthm}
+\usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{hyperref}
 \newtheorem*{defi}{Definition}
@@ -11,6 +13,11 @@
 \newtheorem*{example}{Example}
 \newtheorem*{schema}{Drawing}
 \newtheorem*{thm*}{Theorem}
+
+% redefine \emptyset as \varnothing
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
 
 \begin{document}
 \maketitle
@@ -237,7 +244,25 @@ The goal of this chapter is to derive an equivalent to the fundamental theorem o
 Recall that is $\mathbb{R}$ one generally uses a rectangular approximation along the segment one integrates over. In $\mathbb{C}$, the principle is the same: we'll present how we can build paths on $\mathbb{C}$ and then how we can integrate over them by approximating the paths.
 \subsection*{Contents}
 \begin{enumerate}
-    \item \dots
+    \item Paths
+        \begin{enumerate}
+            \item Definition \& Examples
+            \item Path concatenation
+            \item Rectifiable paths
+            \item Connected sets
+        \end{enumerate}
+    \item Line integrals 
+        \begin{enumerate}
+            \item Definition
+            \item Calculus
+            \item Reparametrization \& Change of variables
+            \item M-L Inequality
+        \end{enumerate}
+    \item Primitives
+        \begin{enumerate}
+            \item Definition \& Fundamental theorem of calculus (complex analysis)
+            \item Useful theorems, integration by parts
+        \end{enumerate}
         
 \end{enumerate}
 
@@ -505,6 +530,175 @@ Now that we have defined line integrals, we can identify the main difficulty of 
 \begin{defi}
     A primitive of a continuous function $f$ defined on a open subset $\Omega$ of $\mathbb{C}$ is a holomorphic function defined on $\Omega$ such that $g'=f$.
 \end{defi}
+
+This formulation is only useful as a definition (or in very simple concrete cases). The following characterisation of primitives is important:
+
+\begin{thm*}[Fundamental theorem of calculus for complex analysis]
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a continuous function, $\Omega\subset\mathbb{C}$ open, connected.
+
+    A function $g: \Omega \rightarrow \mathbb{C}$ is a primitive of $f$ if and only if: for any $z\in\Omega$ and any rectifiable path $\gamma$ on $\Omega$ that joins $a$ and $z$, 
+    $$ g(z) = g(a) + \int_\gamma f(w)dw $$
+\end{thm*}
+
+\begin{note}
+    Notice that the integral characterisation must be true for all paths. The $\mathbb{R}$ equivalent is weaker because there is unique path along which to integrate (modulo reparametrization).
+\end{note}
+
+\begin{thm*}[Existence of primitives]
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a function, $\Omega\subset\mathbb{C}$ open, connected.
+
+    $f$ has a primitive if and only if, it is continuous and for any closed rectifiable path $\gamma$: 
+    $$ \int_\gamma f(z)dz = 0 $$
+\end{thm*}
+
+\begin{note}
+    This is a very useful property: to show that a function does not have a primitive, just show a counter example.
+\end{note}
+
+\begin{thm*}[Set of primitives]
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a function, $\Omega\subset\mathbb{C}$ open.
+
+    If $g$ is a primitive of $f$, then $h$ is also a primitive of $f$ if and only if $h - g$ is constant.
+\end{thm*}
+
+\begin{thm*}[Integration by parts]
+    Let $\gamma$ rectifiable on $\Omega$, open connected.
+    
+    
+     $\forall f, g: \Omega \rightarrow \mathbb{C}$, holomorphic on $\Omega$ open, connected,
+
+     $$ \int_\gamma f'g = [fg]_\gamma - \int_\gamma fg'$$
+\end{thm*}
+
+\newpage
+\section{Third Session: Connected sets}
+In this section, we characterize subsets of the complex plane (we refer to them simply as sets) that are "in one piece".
+
+We present two alternative concepts: path-connectedness and connectedness. The latter is more abstract but more powerful. When the sets we consider are open, the two properties are equivalent.
+
+\subsection*{Contents}
+\begin{enumerate}
+    \item \dots
+        \begin{enumerate}
+            \item \dots
+        \end{enumerate}
+\end{enumerate}
+
+\subsection{Path-connected, connected}
+
+\subsubsection{Path-connected}
+We've already seen and used the definition of path connected but as a reminder:
+\begin{defi}[Path-connected set]
+   $A$ is path connected if any two points of $A$ can be joined by a path on $A$:
+
+   $$\forall a,b\in A, \exists \gamma\in\mathcal{C}^0, \forall t\in[0,1], \gamma(t)\in A~\mathrm{ and}~\gamma(0) = a, \gamma(1) = b$$
+\end{defi}
+
+\subsubsection{Connected}
+In order to define connectedness, let's introduce the concept of \emph{dilation}.
+
+\begin{defi}[Dilation]
+    A set $B$ is a dilation of $A$ if it the union of a collection of non-empty open disks whose centers are at the points of A:
+
+    $$ B = \bigcup_{a\in A}{D(a, r_a)} $$
+    where $\forall a\in A, r_a > 0$.
+\end{defi}
+
+We can now define connectedness:
+
+\begin{defi}
+    A set is connected if all of its dilations are path connected. A set that does not verify this property is disconnected.
+\end{defi}
+
+\begin{thm*}[Path-connected $\implies$ connected]
+    Every path-connected set is connected.
+\end{thm*}
+
+\begin{thm*}[Open, connected $\implies$ path-connected]
+    Every open, connected set is path-connected.
+\end{thm*}
+
+Let's quickly prove this theorem with a drawing:
+
+\begin{proof}[Proof sketch $(\implies)$]
+    Take $z, w \in B$ a dilation of $A$. There is $a, b \in A$ such that $z\in D_a$ and $w\in D_b$.
+    As in the drawing, there is a path from $z$ to $a$ in $D_a$, and path from $b$ to $w$. Because $A$ is path-connected, there is a path from $a$ to $b$ in $A$. 
+\end{proof}
+\begin{proof}[Proof sketch $(\impliedby)$, not as pedagogical]
+    Show that it is legitimate to write $A$ as a dilation of itself.
+\end{proof}
+
+Finally, we can deduce the following theorem:
+
+\begin{thm*}[Open connected $\iff$ open, path-connected]
+   An open set is connected if and only if it is path-connected. 
+\end{thm*}
+
+\subsubsection{Properties of path-connected/connected sets}
+
+\begin{thm*}
+    The following properties are shared by both connected and path-connected sets:
+    \begin{description}
+        \item[$\cap \mathcal{A} \neq \emptyset \implies \cup \mathcal{A}$ connected: ] if $\mathcal{A}$ is a collection of (path-)conected sets whose intersection $\cap \mathcal{A}$ is non-empty, then the union $\cup \mathcal{A}$ is (path-)connected.
+        \item[$A \cap B = \emptyset$, with $A,B$ open $ \implies A\cup B$ disconnected] If $A$ and $B$ are two open, non-empty and disjoint sets, then their union is not (path-)connected.
+    \end{description}
+\end{thm*}
+
+The following property only holds for connectedness:
+\begin{thm*}[Closure of connected sets]
+    The closure of a connected set is connected.
+\end{thm*}
+
+\begin{note}
+    This is \emph{not} true for all path-connected sets. Refer to the textbook for a counter-example.
+\end{note}
+
+\subsection{Components}
+\begin{defi}
+    $B\subset A$ is a (path-)-connected component of $A$ if:
+
+    \begin{itemize}
+        \item $B$ is (path-)connected
+        \item $B$ is maximal with respect to inclusion (i.e. if $B\subsetneq C\subset A$, then $C=A$)
+    \end{itemize}
+\end{defi}
+
+\begin{thm*}
+    The (path-)connected components of a non-empty set $A$ are a partition of $A$, i.e.:
+    \begin{itemize}
+        \item they are non-empty
+        \item pairwise disjoint 
+        \item union is $A$.
+    \end{itemize}
+\end{thm*}
+
+\begin{thm*}
+    A non-empty set is (path-)connected if and only if it has a single (path-)connected component.
+\end{thm*}
+
+Because connectedness and path-connectedness are equivalent when a set is open, we can show that:
+
+\begin{thm*}
+    The partitions of a non-empty open set into path-connected components and connected components are identical. All such components are open.
+\end{thm*}
+
+\begin{note}
+    This result signifies that we can use "the" decomposition into (path-)connected components.
+\end{note}
+
+\subsection{Locally constant functions}
+The following concept will be useful in the future.
+
+\begin{defi}
+    A function $f: A \rightarrow \mathbb{C}$ is locally constant if for any $a\in A$ there is a non-empty open disk $D$ centered on $a$ such that $f$ is constant on $A\cap D$.
+
+    In other words, if:
+    $$ \forall a \in A, \exists \varepsilon >0, \forall b \in A, |b-a|< \varepsilon \implies f(b) = f(a) $$
+\end{defi}
+
+\begin{thm*}
+    A set $A$ is connected if and only if every locally constant function defined on $A$ is constant.
+\end{thm*}
 
 
 \end{document}
