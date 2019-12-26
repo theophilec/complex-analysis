@@ -735,9 +735,18 @@ CIT gives many interesting corollaries that are useful in practice.
     $$\forall z\in\mathcal{B}_f(c, r), f(z) = \frac{1}{2i\pi}\int_\gamma \frac{f(w)}{w - z}dw$$
 \end{thm*}
 
+
+\begin{thm*}
+    The derivative of a holomorphic function if holomorphic.
+\end{thm*}
+
 \begin{proof}
     You'll prove this theorem during the problem session.
 \end{proof}
+
+\begin{note}
+    We've already used this property in the past, but rest assured, there are no circular arguments.
+\end{note}
 
 \begin{thm*}[Morera's theorem -- characterisation of holomorphy]
     Let $\Omega$ be an open subset of the complex plane. 
@@ -753,10 +762,6 @@ CIT gives many interesting corollaries that are useful in practice.
     $$\int_\gamma f(z)dz = 0 $$
 \end{thm*}
 
-\begin{proof}
-    You'll prove this theorem during the problem session.
-\end{proof}
-
 \begin{thm*}[Uniform limit of Holomorphic functions]
     Let $\Omega$ be an open subset of the complex plane. 
 
@@ -768,6 +773,28 @@ CIT gives many interesting corollaries that are useful in practice.
 
 \end{thm*}
 
-Finally,
+Finally, a last useful theorem:
+
+\begin{thm*}[Liouville's theorem]
+    A bounded, holomorphic function defined on $\mathbb{C}$ (\emph{entire}) is constant.
+\end{thm*}
+
+Because this theorem is very useful (and to use the previous results) let's prove it step-by-step.
+
+\begin{proof}
+    To show that $f$ is constant, we show that $f' = 0$.
+    \begin{description}
+        \item[First, apply Cauchy's formula for disks to $f'$.]
+            We get:
+            $$ \forall z\in\mathbb{C}, f'(z) = \frac{1}{2i\pi} \int_\gamma\frac{f'(w)}{w-z}dw$$
+            where $\gamma = z + r[C_+]$.
+        \item[Second, integrate by parts to make $f$ appear.]
+            We get:
+            $$ \forall z\in\mathbb{C}, f(z) = \frac{1}{2i\pi} \int_\gamma\frac{f(w)}{(w-z)^2}dw$$
+        \item[Third, show that $|f'| < \frac{K}{r}$ for all $r > 0$.] Use the M-L inequality.
+        \item[Conclude.] With $r\rightarrow \infty$, $f'(z) = 0$. Because the zero function and $f$ are both primitives of $f'$, they differ by a constant (see Primitives chapter). Thus, $f$ is constant.
+    \end{description}
+\end{proof}
+
 
 \end{document}
