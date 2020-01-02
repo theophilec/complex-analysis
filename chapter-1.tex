@@ -1182,10 +1182,235 @@ Let's take a look at what happens within a power series' disk of convergence.
     for any $z\in D(c,r)$, there exists an open neighborhood $U$ of $z$ in $D(c, r)$ such that
 
     $$\exists \kappa > 0, \forall z \in U, \sum_{n=0}^{+\infty}|a_n(z-c)^n| \leq \kappa$$
-\end{thm*}
 
 
     Equivalently, for every compact subset $K$ of $D(c,r)$,
     $$\exists \kappa > 0, \forall z \in K, \sum_{n=0}^{+\infty}|a_n(z-c)^n| \leq \kappa$$
+
+\end{thm*}
+
+\begin{note}
+    Notice that the convergence properties are on open neighborhoods, or on compact subsets of an open disk. Thus, at the border, nothing is known!
+\end{note}
+    
+\begin{thm*}
+    [Other types of convergence]
+    Locally normal convergence implies two other types of convergence of the series:
+
+    \begin{description}
+        \item[Absolute convergence] 
+        $$\forall z \in D(c,r), \sum_{n=0}{+\infty}|a_n(z-c)^n| < \infty$$
+        \item[Locally uniform convergence] 
+            $$\left\|\sum_{n=0}^{p}a_n(z-c)^n - \sum_{n=0}^{+\infty}an(z-c)^n\right\|\rightarrow_{p\rightarrow\infty} 0$$
+    \end{description}
+\end{thm*}
+
+\subsection{Derivative, Holomorphy}
+
+Let's take a look at what happens when we differentiate a power series. First, we'll "cheat" and show that the intuitive "formal" derivative has interesting properties.
+\begin{thm*}
+    [Power series derivative]
+    A power series 
+$$\sum_{n=0}^{+\infty}a_n(z-c)^n$$
+and its formal derivative 
+$$\sum_{n=1}^{+\infty}na_n(z-c)^{n-1}$$
+
+have the same radius of convergence.
+
+Furthermore, the sum of a power series is holomorphic on its open disk of convergence.
+
+Its derivative is the sum of its formal derivative on its open disk of convergence.
+
+\end{thm*}
+
+\begin{exo}
+    Compute the $p$-th formal derivative of a formal power series.
+\end{exo}
+
+\subsection{Taylor series expansion}
+We've just seen that a power series is a holomorphic function. What about the converse statement? Power series expansion is the computation of a holomorphic function as a power series, for example as a Taylor Series.
+
+
+\begin{thm*}[Unicity of the power series expansion -- Taylor series]
+    If $f : \mathbb{C} \rightarrow \mathbb{C}$ has a power series expansion centered at $c$ inside the non-empty open disk $D(c,r)$, it is the Taylor series of $f$:
+    $$\forall z \in D(c,r), f(z) = \sum_{n=0}^{+\infty}\frac{f^{(n)}(c)}{n!}(z-c)^n$$
+\end{thm*}
+
+Here we've shown uniqueness, not existence. Let's do so here:
+
+\begin{thm*}
+    [Power series expansion for holomorphic functions]
+    Let $\Omega$ be an open subset of $\mathbb{C}$.
+
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function.
+    
+    Let $c\in\Omega$ and $r\in]0, +\infty]$, such that $D(c,r)\in\Omega$.
+
+    There is a power series with coefficients $a_n$ such that:
+
+    $$ \forall z \in D(c, r), f(z) = \sum_{n=0}^{+\infty}a_n(z-c)^n$$
+
+Its coefficients are given by:
+
+$$ \forall 0 < \rho < r, 
+a_n = \frac{1}{2i\pi} \int_\gamma \frac{f(z)}{{(z-c)^{n+1}}}dz$$
+
+where 
+$$ \gamma = c + \rho[C_+]$$
+\end{thm*}
+
+\subsection{Laurent series}
+Taylor series expansions are polynomial. For example, they are exact expansions for polynomial functions. To capture more properties of a function, especially around singularities, we can generalize them using rational fractions, i.e. negative powers of $z$.
+
+\begin{defi}
+    [Laurent series]
+    A Laurent series centered on $c\in\mathbb{C}$ with coefficients $(a_n)_{n\in\mathbb{Z}}$ is 
+    $$ \sum_{n=-\infty}^{+\infty}a_n(z-c)^n$$
+\end{defi}
+
+\begin{defi}
+    [Laurent series--convergence]
+    A Laurent series is convergent at $z\in\mathbb{C}$ if sums
+    $$ \sum_{n=0}^{+\infty}a_n(z-c)^n$$
+    and
+    $$ \sum_{n=1}^{+\infty}a_{-n}(z-c)^{-n}$$
+    are both convergent.
+\end{defi}
+
+For obvious reasons ($z-c$ can be $= 0$), we want to define the Laurent series excluding some interior points instead of defining it on an open disk. Let's introduce the annulus for this.
+
+\begin{defi}
+    [Annulus]
+    Let $c\in\mathbb{C}$ and $r_1, r_2 \in [0, + \infty]$.
+
+    We denote by 
+    $$A(c, r_1, r_2) = \left\lbrace z\in\mathbb{C} \vert r_1 < | z-c | < r_2 \right \rbrace $$
+\end{defi}
+\begin{exo}
+    Show that an annulus is open.
+\end{exo}
+
+Let's provide some of the same results as for Taylor series.
+
+\begin{thm*}
+    [Convergence of Laurent Series ]
+    The inner radius of convergence 
+    $$r_1  = \limsup_{n\rightarrow + \infty}|a_{-n}|^{1/n} $$
+    and the outer radius of convergence
+    $$r_2  = \frac{1}{\limsup_{n\rightarrow + \infty}|a_{-n}|^{1/n}} $$
+
+    are such that the series converges in $A(c, r_1, r_2)$ and diverges if $|z-c| < r_1$ or $|z-c| > r_2$.
+
+    In this open annulus of convergence, the convergence is locally normal.
+\end{thm*}
+
+\begin{note}
+    Like for Taylor series, the annulus of convergence is open! So what happens at the boundary is not well characterized in general.
+\end{note}
+
+Finally, 
+\begin{thm*}
+    [Laurent series expansion for holomorphic functions]
+    Let $\Omega$ be an open subset of $\mathbb{C}$.
+
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function.
+    
+    Let $c\in\Omega$ and $r_1, r_2\in[0, +\infty]$, such that $A(c,r_1, r_2)\in\Omega$ is non-empty.
+
+    There is a Laurent series with coefficients $a_n$ such that:
+
+    $$ \forall z \in A(c, r_1, r_2), f(z) = \sum_{n=-\infty}^{+\infty}a_n(z-c)^n$$
+
+Its coefficients are given by:
+
+$$ \forall r_1 < \rho < r_2, 
+a_n = \frac{1}{2i\pi} \int_\gamma \frac{f(z)}{{(z-c)^{n+1}}}dz$$
+
+where 
+$$ \gamma = c + \rho[C_+]$$
+\end{thm*}
+
+
+\newpage
+\section{Eighth session: Zeros \& Poles}
+
+In this chapter, we study the behavior of a holomorphic function $f$ around a point $c$ that may or may not be in its domain of definition. These considerations are interesting because they give way to important mathematical arguments like the maximum principle.
+
+We'll limit ourselves to isolated singularities. Recall:
+\begin{defi}[Recall: Isolated Singularity]
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function where $\Omega$ is an open subset of $\mathbb{C}$.
+    
+    $a\in\mathbb{C}\setminus\Omega$ is a singularity of $f$ if
+    $$ \exists \varepsilon > 0 \vert \forall z\in\mathbb{C}, z \neq a, |z-a| < \varepsilon \implies z\in\Omega$$
+\end{defi}
+
+\begin{note}
+    It can be useful to remark that a point $a$ is isolated in a closed set $C$ is $C\setminus \{a\}$ is still closed. 
+
+    Indeed, the set $\mathbb{C}\setminus\Omega$ is closed, as the complement of an open set.
+\end{note}
+
+\begin{note}
+    We can summarize the definition of an isolated singularity by requiring that an annulus $A(c, 0, r)$ with $r>0$ is a subset of $\Omega$.
+\end{note}
+
+
+First, we'll look at the zeros of a holomorphic function. Then, we'll study the poles. Finally, we'll show we can use line integrals (residues, in fact) to study zeros and poles.
+
+
+\subsection{Zeroes of a holomorphic function}
+
+\begin{defi}
+    [Zero]
+    Let $\Omega$ be an open subset of $\mathbb{C}$.
+
+    Let $f: \Omega \rightarrow \mathbb{C}$.
+
+    A zero (or root) $c$ of $f$ is a point $c\in\Omega$ such that $$ f(c) = 0$$
+\end{defi}
+
+This vocabulary is the same as for polynomials. Recall that polynomial roots can have multiplicities (e.g. $(X-1)^3$). We saw in the previous section that holomorphic functions "are like" polynomials if we expand them in a Taylor series, thus:
+
+\begin{defi}
+    [Zero]
+    Let $\Omega$ be an open subset of $\mathbb{C}$.
+
+    Let $f: \Omega \rightarrow \mathbb{C}$.
+
+    A zero (or root) $c\in\Omega$ of $f$ is of multiplicity $p$ if there exists $a\in\mathbb{C}$ such that
+    $$ f(z) \sim_{c}a(z-c)^p $$
+    
+    Equivalently, if 
+
+    $$\lim_{z\rightarrow c} \frac{f(z)}{(z-c)^p} =a \in\mathbb{C}$$
+
+    A pole of multiplicity $ 1$ is simple, $2$ is double, \dots 
+\end{defi}
+
+
+The folowing theorem characterizes the multiplicity of a zero:
+\begin{thm*}
+    [Characterisation of zero multiplicity]
+    Let $\Omega$ be an open subset of $\mathbb{C}$.
+
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function.
+
+    A zero $c\in\Omega$ of $f$ is of multiplicity $p$ if and only if one of the following equivalent conditions holds:
+
+    \begin{itemize}
+        \item The function $f$ and exactly its first $p-1$ derivatives are zero at $c$, i.e. $\forall k < p, f^{(k)}(c) = 0$ but $f^{(p)}(c) \neq 0$.
+
+        \item The Taylor expansion of $f$ at $c$ is 
+
+            $$ f(z) = \sum_{n=p}^{+\infty}(z-c)^n$$ with $a_p\neq 0$.
+
+        \item There is a holomorphic function $a$ such that 
+
+            $$ \forall z\in\Omega, f(z) = a(z) (z-c)^p$$
+            with $a(c) \neq 0$.
+    \end{itemize}
+
+
+\end{thm*}
 
 \end{document}
