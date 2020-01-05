@@ -25,7 +25,7 @@ First, we'll look at the zeros of a holomorphic function. Then, we'll study the 
 
 
 \subsection{Zeroes of a holomorphic function}
-
+\subsubsection{Multiplicity}
 \begin{defi}
     [Zero]
     Let $\Omega$ be an open subset of $\mathbb{C}$.
@@ -56,7 +56,7 @@ This vocabulary is the same as for polynomials. Recall that polynomial roots can
 
 The folowing theorem characterizes the multiplicity of a zero:
 \begin{thm*}
-    [Characterisation of zero multiplicity]
+    [Characterisation of the multiplicity of a zero]
     Let $\Omega$ be an open subset of $\mathbb{C}$.
 
     Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function.
@@ -78,4 +78,102 @@ The folowing theorem characterizes the multiplicity of a zero:
 
 
 \end{thm*}
+
+The intuition behind holomorphic functions is their proximity with polynomials (or rational functions). The following theorem should not come as a surprise then:
+
+\begin{thm*}
+    [Zero with no finite multiplicity]
+    Let $\Omega$ be an open, connected subset of $\mathbb{C}$.
+
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function.
+
+    If $c$ is a zero of $f$ but has no finite multiplicity, then $f$ is identically zero.
+\end{thm*}
+
+\subsubsection{Isolated zeros}
+
+Conversely, a zero with finite multiplicity is isolated:
+
+\begin{thm*}
+    [Zeros of finite multiplicity are isolated]
+
+    Let $\Omega$ be an open subset of $\mathbb{C}$.
+
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function.
+
+    If $c$ is a zero of $f$ with finite multiplicity, then $c$ is isolated in $\Omega$.
+\end{thm*}
+
+From this we'll deduce that:
+
+\begin{thm*}
+    [Isolated Zeros Theorem I]
+    Let $\Omega$ be an open, connected subset of $\mathbb{C}$.
+
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function.
+    
+    Unless $f$ is identically 0, the zeros of $f$ are isolated.
+\end{thm*}
+
+\begin{exo}
+    Can you prove the previous theorem using properties we just saw?
+\end{exo}
+
+\begin{note}
+    [In practice]
+    
+    This theorem is mostly useful for showing that a holomorphic function is identically zero, using its contraposition.
+\end{note}
+
+To explicit this, let's formalize the opposite of a set with an isolated point: a limit point.
+
+\begin{defi}
+    [Limit point]
+    A point $c$ is a limit point of $C\subset \mathbb{C}$ if every open annulus $A(c, 0, r)$ intersects $C$, i.e.
+
+    $$ \forall r > 0, A(c, 0, r) \cap C \neq \emptyset $$
+\end{defi}
+
+We can now use:
+
+\begin{thm*}
+    [Isolated Zeros Theorem II]
+    Let $\Omega$ be an open, connected subset of $\mathbb{C}$.
+
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function.
+    
+    If the set of zeros of $f$ has a limit point, then $f$ is identically zero.
+\end{thm*}
+
+A useful corollary is:
+
+\begin{thm*}
+    [Uniqueness principle]
+    Let $\Omega$ be an open, connected subset of $\mathbb{C}$.
+
+    Let $f_1, f_2: \Omega \rightarrow \mathbb{C}$ be two holomorphic functions.
+
+    If $f_1$ and $f_2$ are equal on a subset of $\Omega$ with a limit point, then $f_1=f_2$ on $\Omega$.
+\end{thm*}
+
+\begin{thm*}
+    [Permanence principle]
+    Let $\Omega$ be an open, connected subset of $\mathbb{C}$.
+
+    Let $f_1, \dots, f_n: \Omega \rightarrow \mathbb{C}$ be $n$ holomorphic functions.
+
+    Let $F : \mathbb{C}^n \mapsto \mathbb{C}$ complex-differentiable on a subset of $\mathbb{C}^n$.
+
+    If the set of points such that $F(f_1(z), \dots, f_n(z)) = 0$ has a limit point in $\Omega$, then $$\forall z\in\Omega, F(f_1(z), \dots, f_n(z))=0$$
+\end{thm*}
+
+\begin{exo}
+    [$\star$]
+    Show that the triangular identity $\sin^2 x + \cos^2 x = 1$ extends to the complex plane, in tw different ways.
+\end{exo}
+
+
+
+
+
 
