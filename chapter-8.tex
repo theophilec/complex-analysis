@@ -1,0 +1,81 @@
+\section{Eighth session: Zeros \& Poles}
+
+In this chapter, we study the behavior of a holomorphic function $f$ around a point $c$ that may or may not be in its domain of definition. These considerations are interesting because they give way to important mathematical arguments like the maximum principle.
+
+We'll limit ourselves to isolated singularities. Recall:
+\begin{defi}[Recall: Isolated Singularity]
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function where $\Omega$ is an open subset of $\mathbb{C}$.
+    
+    $a\in\mathbb{C}\setminus\Omega$ is a singularity of $f$ if
+    $$ \exists \varepsilon > 0 \vert \forall z\in\mathbb{C}, z \neq a, |z-a| < \varepsilon \implies z\in\Omega$$
+\end{defi}
+
+\begin{note}
+    It can be useful to remark that a point $a$ is isolated in a closed set $C$ is $C\setminus \{a\}$ is still closed. 
+
+    Indeed, the set $\mathbb{C}\setminus\Omega$ is closed, as the complement of an open set.
+\end{note}
+
+\begin{note}
+    We can summarize the definition of an isolated singularity by requiring that an annulus $A(c, 0, r)$ with $r>0$ is a subset of $\Omega$.
+\end{note}
+
+
+First, we'll look at the zeros of a holomorphic function. Then, we'll study the poles. Finally, we'll show we can use line integrals (residues, in fact) to study zeros and poles.
+
+
+\subsection{Zeroes of a holomorphic function}
+
+\begin{defi}
+    [Zero]
+    Let $\Omega$ be an open subset of $\mathbb{C}$.
+
+    Let $f: \Omega \rightarrow \mathbb{C}$.
+
+    A zero (or root) $c$ of $f$ is a point $c\in\Omega$ such that $$ f(c) = 0$$
+\end{defi}
+
+This vocabulary is the same as for polynomials. Recall that polynomial roots can have multiplicities (e.g. $(X-1)^3$). We saw in the previous section that holomorphic functions "are like" polynomials if we expand them in a Taylor series, thus:
+
+\begin{defi}
+    [Zero]
+    Let $\Omega$ be an open subset of $\mathbb{C}$.
+
+    Let $f: \Omega \rightarrow \mathbb{C}$.
+
+    A zero (or root) $c\in\Omega$ of $f$ is of multiplicity $p$ if there exists $a\in\mathbb{C}$ such that
+    $$ f(z) \sim_{c}a(z-c)^p $$
+    
+    Equivalently, if 
+
+    $$\lim_{z\rightarrow c} \frac{f(z)}{(z-c)^p} =a \in\mathbb{C}$$
+
+    A pole of multiplicity $ 1$ is simple, $2$ is double, \dots 
+\end{defi}
+
+
+The folowing theorem characterizes the multiplicity of a zero:
+\begin{thm*}
+    [Characterisation of zero multiplicity]
+    Let $\Omega$ be an open subset of $\mathbb{C}$.
+
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function.
+
+    A zero $c\in\Omega$ of $f$ is of multiplicity $p$ if and only if one of the following equivalent conditions holds:
+
+    \begin{itemize}
+        \item The function $f$ and exactly its first $p-1$ derivatives are zero at $c$, i.e. $\forall k < p, f^{(k)}(c) = 0$ but $f^{(p)}(c) \neq 0$.
+
+        \item The Taylor expansion of $f$ at $c$ is 
+
+            $$ f(z) = \sum_{n=p}^{+\infty}(z-c)^n$$ with $a_p\neq 0$.
+
+        \item There is a holomorphic function $a$ such that 
+
+            $$ \forall z\in\Omega, f(z) = a(z) (z-c)^p$$
+            with $a(c) \neq 0$.
+    \end{itemize}
+
+
+\end{thm*}
+

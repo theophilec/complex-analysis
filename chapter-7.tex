@@ -1,0 +1,199 @@
+\section{Seventh session: Power series}
+
+A power series is the generalization of the polynomial to an infinity of terms, written:
+$$\sum_{n=0}^{+\infty}a_n(z-c)^n$$
+
+\subsection{Definition \& Fundamental properties}
+
+\begin{defi}
+    The radius of convergence for the above power series is the unique $r$ such that:
+    \begin{itemize}
+        \item the series converges if $|x - c| < r$ 
+        \item the series diverges is $|x - c| > r$.
+    \end{itemize}
+
+    In other words, it is the inverse of the growth ratio $\sigma$ of the series, such that:
+    $$\exists m \in \mathbb{N}, \forall n \in \mathbb{N} \vert n \geq m \implies |a_n| \leq \sigma^n $$
+\end{defi}
+
+In pratice to calculate the radius of convergence, find the smallest $\sigma > 0$ such that "apcr" $$|a_n|^n \leq \sigma^n$$
+
+\begin{note}
+    Careful, at the radius of convergence, anything can happen!
+\end{note}
+
+\begin{example}
+    [$\star$]
+    $a_n = 2^n$, $a_n = \left(\frac{1}{2}\right)^n$, \dots
+\end{example}
+
+\begin{thm*}
+    [Multiplication of power series]
+    $$R(a_nb_n) \geq R(a_n)R(b_n)$$
+
+    Equality for polynomial coefficients, i.e. $a_n \sim n^p$.
+\end{thm*}
+\begin{proof}
+    $\sigma_{ab} \leq \sigma_a\sigma_b$
+\end{proof}
+
+\subsection{Convergence}
+Let's take a look at what happens within a power series' disk of convergence.
+
+\begin{thm*}
+    [Locally Normal Convergence]
+    The convergence of the power series above in its open disk of convergence $D(c, r)$ is locally normal:
+    
+    for any $z\in D(c,r)$, there exists an open neighborhood $U$ of $z$ in $D(c, r)$ such that
+
+    $$\exists \kappa > 0, \forall z \in U, \sum_{n=0}^{+\infty}|a_n(z-c)^n| \leq \kappa$$
+
+
+    Equivalently, for every compact subset $K$ of $D(c,r)$,
+    $$\exists \kappa > 0, \forall z \in K, \sum_{n=0}^{+\infty}|a_n(z-c)^n| \leq \kappa$$
+
+\end{thm*}
+
+\begin{note}
+    Notice that the convergence properties are on open neighborhoods, or on compact subsets of an open disk. Thus, at the border, nothing is known!
+\end{note}
+    
+\begin{thm*}
+    [Other types of convergence]
+    Locally normal convergence implies two other types of convergence of the series:
+
+    \begin{description}
+        \item[Absolute convergence] 
+        $$\forall z \in D(c,r), \sum_{n=0}{+\infty}|a_n(z-c)^n| < \infty$$
+        \item[Locally uniform convergence] 
+            $$\left\|\sum_{n=0}^{p}a_n(z-c)^n - \sum_{n=0}^{+\infty}an(z-c)^n\right\|\rightarrow_{p\rightarrow\infty} 0$$
+    \end{description}
+\end{thm*}
+
+\subsection{Derivative, Holomorphy}
+
+Let's take a look at what happens when we differentiate a power series. First, we'll "cheat" and show that the intuitive "formal" derivative has interesting properties.
+\begin{thm*}
+    [Power series derivative]
+    A power series 
+$$\sum_{n=0}^{+\infty}a_n(z-c)^n$$
+and its formal derivative 
+$$\sum_{n=1}^{+\infty}na_n(z-c)^{n-1}$$
+
+have the same radius of convergence.
+
+Furthermore, the sum of a power series is holomorphic on its open disk of convergence.
+
+Its derivative is the sum of its formal derivative on its open disk of convergence.
+
+\end{thm*}
+
+\begin{exo}
+    Compute the $p$-th formal derivative of a formal power series.
+\end{exo}
+
+\subsection{Taylor series expansion}
+We've just seen that a power series is a holomorphic function. What about the converse statement? Power series expansion is the computation of a holomorphic function as a power series, for example as a Taylor Series.
+
+
+\begin{thm*}[Unicity of the power series expansion -- Taylor series]
+    If $f : \mathbb{C} \rightarrow \mathbb{C}$ has a power series expansion centered at $c$ inside the non-empty open disk $D(c,r)$, it is the Taylor series of $f$:
+    $$\forall z \in D(c,r), f(z) = \sum_{n=0}^{+\infty}\frac{f^{(n)}(c)}{n!}(z-c)^n$$
+\end{thm*}
+
+Here we've shown uniqueness, not existence. Let's do so here:
+
+\begin{thm*}
+    [Power series expansion for holomorphic functions]
+    Let $\Omega$ be an open subset of $\mathbb{C}$.
+
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function.
+    
+    Let $c\in\Omega$ and $r\in]0, +\infty]$, such that $D(c,r)\in\Omega$.
+
+    There is a power series with coefficients $a_n$ such that:
+
+    $$ \forall z \in D(c, r), f(z) = \sum_{n=0}^{+\infty}a_n(z-c)^n$$
+
+Its coefficients are given by:
+
+$$ \forall 0 < \rho < r, 
+a_n = \frac{1}{2i\pi} \int_\gamma \frac{f(z)}{{(z-c)^{n+1}}}dz$$
+
+where 
+$$ \gamma = c + \rho[C_+]$$
+\end{thm*}
+
+\subsection{Laurent series}
+Taylor series expansions are polynomial. For example, they are exact expansions for polynomial functions. To capture more properties of a function, especially around singularities, we can generalize them using rational fractions, i.e. negative powers of $z$.
+
+\begin{defi}
+    [Laurent series]
+    A Laurent series centered on $c\in\mathbb{C}$ with coefficients $(a_n)_{n\in\mathbb{Z}}$ is 
+    $$ \sum_{n=-\infty}^{+\infty}a_n(z-c)^n$$
+\end{defi}
+
+\begin{defi}
+    [Laurent series--convergence]
+    A Laurent series is convergent at $z\in\mathbb{C}$ if sums
+    $$ \sum_{n=0}^{+\infty}a_n(z-c)^n$$
+    and
+    $$ \sum_{n=1}^{+\infty}a_{-n}(z-c)^{-n}$$
+    are both convergent.
+\end{defi}
+
+For obvious reasons ($z-c$ can be $= 0$), we want to define the Laurent series excluding some interior points instead of defining it on an open disk. Let's introduce the annulus for this.
+
+\begin{defi}
+    [Annulus]
+    Let $c\in\mathbb{C}$ and $r_1, r_2 \in [0, + \infty]$.
+
+    We denote by 
+    $$A(c, r_1, r_2) = \left\lbrace z\in\mathbb{C} \vert r_1 < | z-c | < r_2 \right \rbrace $$
+\end{defi}
+\begin{exo}
+    Show that an annulus is open.
+\end{exo}
+
+Let's provide some of the same results as for Taylor series.
+
+\begin{thm*}
+    [Convergence of Laurent Series ]
+    The inner radius of convergence 
+    $$r_1  = \limsup_{n\rightarrow + \infty}|a_{-n}|^{1/n} $$
+    and the outer radius of convergence
+    $$r_2  = \frac{1}{\limsup_{n\rightarrow + \infty}|a_{-n}|^{1/n}} $$
+
+    are such that the series converges in $A(c, r_1, r_2)$ and diverges if $|z-c| < r_1$ or $|z-c| > r_2$.
+
+    In this open annulus of convergence, the convergence is locally normal.
+\end{thm*}
+
+\begin{note}
+    Like for Taylor series, the annulus of convergence is open! So what happens at the boundary is not well characterized in general.
+\end{note}
+
+Finally, 
+\begin{thm*}
+    [Laurent series expansion for holomorphic functions]
+    Let $\Omega$ be an open subset of $\mathbb{C}$.
+
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function.
+    
+    Let $c\in\Omega$ and $r_1, r_2\in[0, +\infty]$, such that $A(c,r_1, r_2)\in\Omega$ is non-empty.
+
+    There is a Laurent series with coefficients $a_n$ such that:
+
+    $$ \forall z \in A(c, r_1, r_2), f(z) = \sum_{n=-\infty}^{+\infty}a_n(z-c)^n$$
+
+Its coefficients are given by:
+
+$$ \forall r_1 < \rho < r_2, 
+a_n = \frac{1}{2i\pi} \int_\gamma \frac{f(z)}{{(z-c)^{n+1}}}dz$$
+
+where 
+$$ \gamma = c + \rho[C_+]$$
+\end{thm*}
+
+
+

@@ -1,0 +1,213 @@
+\section{Fifth Session: the winding number ("le nombre venteux")}
+
+Our goal in this chapter is to provide the necessary tools to allow us to generalize Cauchy's Integral Theorem to a global version.
+
+The main idea is to properly define the inside and the outside of a path.
+
+\subsection{Choices in arguments}
+
+The goal of this section is to show how one can define "the argument" of a complex number, as a continuous function. 
+
+The idea is as follows:
+\begin{enumerate}
+    \item Define a set-valued argument function (of all possible arguments).
+    \item Define a choice of argument among these possibilities, a single-valued function.
+    \item Define this choice with respect to a path.
+\end{enumerate}
+
+\begin{defi}[Argument function]
+    The set-valued function $\mathrm{Arg}$ is defined on $\mathbb{C}^*$ by:
+$$ \mathrm{Arg}(z) = \left \lbrace \theta \in \mathbb{R} \bigg\vert e^{i\theta} = \frac{z}{|z|}\right \rbrace$$
+\end{defi}
+
+A choice of the argument can be for example the Principal value of the Argument:
+
+\begin{thm*}
+    The principal value of the argument is the unique continuous function
+
+    $$\mathrm{arg}: \mathbb{C} \setminus \mathbb{R}^{-} \rightarrow \mathbb{R}$$
+
+    such that $$ \mathrm{arg} 1 = 0$$ 
+\end{thm*}
+
+\begin{note}
+    Notice the \emph{cut} in $\mathbb{C}$ (classically along the negative real axis). This cut is unavoidable: there is no continuous choice of argument defined on $\mathbb{C}^*$.
+\end{note}
+
+However, in the special case of the argument along a path of $\mathbb{C}^*$, there is no restriction:
+
+\begin{thm*}[Continuous choice of argument on a path]
+    Let $a\in\mathbb{C}$ and $\gamma$ be a path of $\mathbb{C} \setminus \lbrace a \rbrace$.
+
+    Let $\theta_0\in\mathbb{R}$ be a value of the argument of $\gamma(0) - a$, i.e. $\theta_0 \in \mathrm{Arg}(\gamma(0) - a)$.
+
+    There is a unique function $\theta: [0,1] \rightarrow \mathbb{R}$ such that $\theta(0) = \theta_0$, which is a choice of $z \mapsto \mathrm{Arg}(z-a)$ on $\gamma$:
+
+    $$\forall t \in [0,1], \theta(t) \in \mathrm{Arg}(\theta(t) - a) $$
+\end{thm*}
+
+We won't prove the theorem but let's just take look at what changes when on a path, thats makes a continuous choice possible.
+
+\begin{proof}[Proof: what changes?]
+We know the "history" of the path!
+\end{proof}
+
+\begin{note}
+    Notice that the pointwise differences of two conitnuous choices of the argument along a path differ by a multiple of $2\pi$.
+\end{note}
+
+\begin{defi}[Variation of the argument]
+    Let $a\in\mathbb{C}$ and $\gamma$ be a path of $\mathbb{C} \setminus \lbrace a \rbrace$.
+
+    The variable of $z \mapsto \mathrm{Arg}(z-a)$ on $\gamma$ is defined as:
+
+    $$[z \mapsto \mathrm{Arg}(z-a)]_\gamma = \theta(1) - \theta(0) $$
+
+    This definition is unambiguous (proof in textbook).
+\end{defi}
+
+\subsection{Winding number \& Properties}
+With these definitions in place, let's move on to the defintion of the winding number ("nombre venteux" ;)). 
+
+Simply put, the winding number (or index) is a riguorous definition of a simple quantity: the number of times a path winds around a given point.
+
+\begin{defi}[Winding number, index]
+    Let $a\in\mathbb{C}$ and $\gamma$ be a path of $\mathbb{C} \setminus \lbrace a \rbrace$.
+    
+    The winding number (or index) of $\gamma$ around $a$ is the integer
+
+    $$ \mathrm{ind}(\gamma, a) = \frac{1}{2\pi}[z \mapsto \mathrm{Arg}(z-a)]_\gamma $$
+\end{defi}
+
+Seen as a function of $\gamma, a$, we can show that $\gamma, a \mapsto \mathrm{Ind}(\gamma, a)$ is locally constant. That is: there exists a disk around $a$ and a "sleeve" (a sausage?) around $\gamma$ such that is by push $a$ or $gamma$ within these limits, their value does not change.
+
+Recall the definition of locally constant:
+
+\begin{defi}[Reminder: locally-constant function]
+    A function $f: A \rightarrow \mathbb{C}$ is locally constant if for any $a\in A$ there is a non-empty open disk $D$ centered on $a$ such that $f$ is constant on $A\cap D$.
+
+    In other words, if:
+    $$ \forall a \in A, \exists \varepsilon >0, \forall b \in A, |b-a|< \varepsilon \implies f(b) = f(a) $$
+\end{defi}
+
+Let's formalize this:
+
+\begin{thm*}[Ind is locally-constant]
+    Let $a\in\mathbb{C}$ and $\gamma$ be a path of $\mathbb{C} \setminus \lbrace a \rbrace$.
+   
+    There is an $\varepsilon > 0$ such that, for any $b\in \mathbb{C}$ and closed path $\beta$, if 
+    \begin{itemize}
+        \item $|b - a| < \varepsilon$
+        \item $\forall t \in [0,1], |\beta(t) - \gamma(t)| < \varepsilon $
+    \end{itemize}
+
+    then, $$\mathrm{ind}(\gamma, a) = \mathrm{ind}(\beta, b)$$
+\end{thm*}
+
+Finally, let's formalize an intuition that on the pieces of $\mathbb{C}$ that $\gamma$ cuts up, the winding number is constant. In other words:
+
+\begin{thm*}[Ind constant on components]
+    Let $\gamma$ be a closed path.
+
+    The function
+    $$ z \in \mathbb{C} \setminus \gamma([0,1]) \mapsto \mathrm{ind}(\gamma, z) $$
+    is constant on each component of $\mathbb{C}\setminus \gamma([0,1])$.
+\end{thm*}
+
+\begin{thm*}{Winding number of unbounded components}
+    Let $\gamma$ be a closed path.
+
+    The function
+    $$ z \in \mathbb{C} \setminus \gamma([0,1]) \mapsto \mathrm{ind}(\gamma, z) $$
+    is $0$ on unbounded components.
+\end{thm*}
+
+\subsubsection{Interior, exterior \& simply connected sets}
+
+Our goal here is to characterize sets that have no holes (on top of being in one piece). We'll then link this to index of a path, using the concepts of interior and exterior.
+
+First, let's define:
+
+\begin{defi}[Hole, Simply-connected]
+    Let $\Omega\subset\mathbb{C}$ open.
+
+    \begin{itemize}
+        \item A hole of $\Omega$ is a bounded component of its complement $\mathbb{C} \setminus \Omega$.
+        \item $\Omega$ is simply connected if it has no hole. In other words, if every component of its complement is unboounded. $\Omega$ is multiply connected otherwise.
+    \end{itemize}
+\end{defi}
+
+\begin{example}[Simply connected but not connected]
+    $$\Omega = \left\lbrace z \in \mathbb{C} \bigg\vert Re(z) < -1 ~\mathrm{or}~ Re(z) > 1 \right\rbrace$$
+\end{example}
+
+\begin{example}[Connected but not simply connected]
+    $$\Omega = \mathbb{C} \setminus \left\lbrace 1, i, -i, -1, 0 \right\rbrace$$
+\end{example}
+
+In terms of paths, we should be able to draw a path around a hole. Thus a set is simply connected if any closed path that we draw has its "interior" in the set.
+
+Before formalizing this intuition, let's define interior and exterior of a path.
+
+\begin{defi}[Exterior of a closed path]
+    The exterior of a closed path $\gamma$ is defined by:
+    $$ \mathrm{Ext}\gamma = \left\lbrace z \in \mathbb{C} \setminus \gamma([0,1]) \bigg\vert  \mathrm{ind}(\gamma, z) = 0 \right\rbrace$$
+\end{defi}
+
+\begin{defi}[Interior of a closed path]
+    The interior of a closed path $\gamma$ is defined by:
+    $$ \mathrm{Int}\gamma = \mathbb{C} \setminus \left( \gamma([0,1]) \cup \mathrm{Ext}\gamma\right ) = \left\lbrace z \in \mathbb{C} \setminus \gamma([0,1]) \bigg\vert  \mathrm{ind}(\gamma, z) \neq 0 \right\rbrace$$
+\end{defi}
+
+
+\begin{thm*}[Index \& Simply Connected Sets]
+    $\Omega\subset\mathbb{C}$ is simply connected if and only if the interior of any closed path $\gamma$ of $\Omega$ is included in $\Omega$:
+
+    $$\forall z \in \mathbb{C}\setminus\gamma([0,1]), \mathrm{ind}(\gamma, z) \neq 0 \implies z \in \Omega $$
+
+Alternatively, if and only if the complement of $\Omega$ is included in the exterior of $\gamma$:
+$$\forall z \in \mathbb{C}\setminus\Omega, \mathrm{ind}(\gamma, z) = 0$$
+\end{thm*}
+
+\begin{example}
+    Drawings with previous examples.
+\end{example}
+
+\begin{note}
+    In the second example above, notice that we cannot always circle only one hole (they get infinitely close, one to another).
+\end{note}
+
+\subsection{Index as a line integral}
+In order for there concepts to be useful, we will show that there is a relation between the index (or winding number) and the line integral.
+
+Our goal is to define the variation of the argument on a path as a line integral. We are going to show that for a closed path $\gamma$ and $a\in\mathbb{C}\setminus\gamma([0,1])$:
+$$\mathrm{ind}(\gamma, a) = \frac{1}{2i\pi}\int_\gamma\frac{dz}{z - a}$$
+
+An idea behind this formula is that $z \mapsto \frac{1}{z - a}$ is the derivative of a logarithm function, which is pretty much a choice of argument (ignoring all the technical details).
+
+First, we'll state the theorem, which we won't prove. However, we'll prove a necessary Lemma after, in order to practice.
+
+
+\begin{thm*}[Index as a line integral]
+    Let $a\in\mathbb{C}$ and $\gamma$ be a path of $\mathbb{C} \setminus \lbrace a \rbrace$.
+
+    Then:
+
+    $$ [z \mapsto \mathrm{Arg}(z - a)]_\gamma = \mathrm{Im}\left(\int_\gamma \frac{dz}{z-a}\right)$$
+
+    If $\gamma$ is closed:
+    $$\boxed{\mathrm{ind}(\gamma, a) = \frac{1}{2i\pi}\int_\gamma\frac{dz}{z-a}}$$
+\end{thm*}
+
+\begin{exo}[Lemma, for practice]
+    Let $a\in\mathbb{C}$ and $\gamma$ be a path of $\mathbb{C} \setminus \lbrace a \rbrace$.
+
+    For any $t\in[0,1]$, let $\gamma_t$ be the path such that for any $s\in[0,1]$, $\gamma_t(s) = \gamma(ts)$. 
+
+    Let $\mu : [0,1] \rightarrow \mathbb{C}$ defined by:
+    $$ \mu(t) = \int_{\gamma_t} \frac{dz}{z-a}$$ 
+
+    Show that:
+    $$\exists \lambda\in\mathbb{C}^*, \forall t \in [0,1], e^{\mu(t)} = \lambda \times (\gamma(t) -a) $$
+\end{exo}
+

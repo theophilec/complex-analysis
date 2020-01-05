@@ -1,0 +1,118 @@
+\section{Sixth session: Cauchy's Integral Theorem  -- Global version}
+
+Recall Cauchy's integral theorem for star-shaped open subsets of $\mathbb{C}$.
+
+\begin{thm*}[Reminder: Cauchy's integral theorem -- star-shaped version]
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function where $\Omega$ is an open star-shaped subset of $\mathbb{C}$.
+
+    For any rectifiable closed path $\gamma$ of $\Omega$:
+
+    $$ \int_\gamma f(z)dz = 0 $$
+\end{thm*}
+
+Our goal here is to relax the star-shaped hypothesis; this will unlock additional properties.
+
+We'll start by formulating the theorem. Then we'll provide a necessary tool: path sequences, an easy extension of closed paths. Then, we'll present some important corollaries of the global version of Cauchy's Integral Theorem.
+
+
+\begin{thm*}[Cauchy's integral theorem -- global version]
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function where $\Omega$ is an open subset of $\mathbb{C}$.
+
+    For any sequence of rectifiable closed paths $\gamma$ of $\Omega$ such that $\mathrm{Int}~\gamma \subset \Omega$:
+
+    $$ \int_\gamma f(z)dz = 0 $$
+\end{thm*}
+
+\subsection*{Path sequences}
+The extension from (closed) path to path sequence is straight-forward, so we'll go quickly. 
+
+\begin{defi}
+    The following definitions generalize easily:
+
+    \begin{description}
+        \item[Opposite \& Concatenation] The opposite of the path sequence $\gamma = (\gamma_1, \dots, \gamma_n)$ is the path sequence:
+            $$\gamma^\leftarrow  = (\gamma_n^\leftarrow, \dots, \gamma_1^\leftarrow)$$
+        \item[Image] The image of a path sequence $\gamma$ defined as above is:
+            $$ \gamma([0,1]) = \bigcup_{k=1}^n{\gamma_k([0,1])} $$
+        \item[Winding number] if $\gamma$ is a path sequence and $a\in\mathbb{C}\setminus\gamma([0,1])$,
+            $$\mathrm{ind}(\gamma, a) = \sum_{k=1}^n\mathrm{ind}(\gamma_k, a)$$
+
+        \item[Exterior] 
+            $$\mathrm{Ext}\gamma = \left\lbrace z\in\mathbb{C}\setminus\gamma([0,1]) \vert \mathrm{ind}(\gamma, a) = 0 \right\rbrace$$
+        \item[Interior] 
+            $$\mathrm{Ext}\gamma = \left\lbrace z\in\mathbb{C}\setminus\gamma([0,1]) \vert \mathrm{ind}(\gamma, a) \neq 0 \right\rbrace$$
+        \item[Length] 
+            $$\ell(\gamma) = \sum_{k=1}^n \ell(\gamma_k)$$
+        \item[Line integrals]
+            $$\int_\gamma f(z)dz = \sum_{k=1}^n \int_{\gamma_k}f(z)dz$$
+    \end{description}
+\end{defi}
+
+\subsection{Equivalent forms of Cauchy's Interal Theorem (global version)}
+
+
+\subsubsection{Singularities \& Residue: Cauchy's Residue Theorem}
+
+A singularity is an isolated point in $\mathbb{C}\setminus\Omega$. In particular it is not on the boundary of $\Omega$. It can be useful to know more about the nature of a singularity. We'll see more about that in the next session.
+
+\begin{defi}[Singularity]
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function where $\Omega$ is an open subset of $\mathbb{C}$.
+    
+    $a\in\mathbb{C}\setminus\Omega$ is a singularity of $f$ if
+    $$ \exists \varepsilon > 0 \vert \forall z\in\mathbb{C}, z \neq a, |z-a| < \varepsilon \implies z\in\Omega$$
+    
+\end{defi}
+\begin{example}[$\star$]
+    Show that $0$ is a singularity for $z \mapsto \frac{1}{z}$.
+\end{example}
+
+One way of characterizing a singularity could be to study the integral of $f$ "around" the singularity. To this end, we define:
+
+\begin{defi}
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function where $\Omega$ is an open subset of $\mathbb{C}$.
+
+    Let $a\in\mathbb{C}\setminus\Omega$ be a singularity of $f$.
+
+    If $r>0$ is such that the only singularity in $\mathrm{Int}~\gamma$ is $a$, we define in the residure of $f$ at $a$ as:
+
+    $$\mathrm{res}(f, a) = \frac{1}{2i\pi} \int_{a + r[C_+]} f(z)dz$$
+\end{defi}
+
+\begin{exo}[$\star$]
+    \begin{enumerate}
+        \item (Lemma) If the interior of $(\gamma, \mu^\leftarrow)$ in included in $\Omega$, then:
+            $$\int_\gamma f(z)dz = \int_\mu f(z)dz$$
+        \item Prove the independence of the residue from the choice of $r$.
+    \end{enumerate}
+\end{exo}
+
+\begin{exo}[$\star$]
+    \begin{enumerate}
+        \item Calculate the residue of $z \mapsto \frac{1}{z-a}$.
+        \item Calculate the residue of $z \mapsto (z-a)^n$.
+    \end{enumerate}
+\end{exo}
+
+\begin{thm*}[Cauchy's Residue Theorem]
+    Let $\Omega$ be an open subset of $\mathbb{C}$ and let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function.
+
+    Let $\gamma$ be a sequence of rectifiable closed paths of $\Omega$ and $a\in\Omega\setminus\gamma([0,1])$.
+
+    If $A$ is a finite set of isolated singularities of $f$ such that $\mathrm{Int}~\gamma \subset \Omega \cup A$ then:
+    $$\int_\gamma \frac{f(z)}{z-a}dz = 2i\pi \times \sum_{a\in A}\mathrm{ind}(\gamma, a) \times \mathrm{res}(f,a)$$
+\end{thm*}
+
+\begin{note}
+    Notice that if $A = \emptyset$, we obtain Cauchy's Integral Theorem.
+\end{note}
+
+\subsubsection{Cauchy's Integral Formula}
+\begin{thm*}[Cauchy's Integral Formula]
+    Let $\Omega$ be an open subset of $\mathbb{C}$ and let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function.
+
+    Let $\gamma$ be a sequence of rectifiable closed paths of $\Omega$ and $a\in\Omega\setminus\gamma([0,1])$.
+
+    If $\mathrm{Int}~\gamma\subset\Omega$ then:
+    $$\int_\gamma \frac{f(z)}{z-a}dz = 2i\pi \times \mathrm{ind}(\gamma, a) \times f(a)$$
+\end{thm*}
+
