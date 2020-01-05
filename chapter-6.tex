@@ -3,7 +3,7 @@
 \begin{enumerate}
     \item CIT Global version
     \item Consequences \& Corollaries (equivalent forms)
-        \begin{enumerate}
+        \begin{itemize}
             \item Residue Theorem
             \item Cauchy's Integral Formula
             \end{itemize}
@@ -27,7 +27,7 @@ We'll start by formulating the theorem. Then we'll provide a necessary tool: pat
 \begin{thm*}[Cauchy's integral theorem -- global version]
     Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function where $\Omega$ is an open subset of $\mathbb{C}$.
 
-    For any sequence of rectifiable closed paths $\gamma$ of $\Omega$ such that $\mathrm{Int}~\gamma \subset \Omega$:
+    For any sequence of rectifiable closed paths $\gamma$ of $\Omega$ such that $\Int~\gamma \subset \Omega$:
 
     $$ \int_\gamma f(z)dz = 0 $$
 \end{thm*}
@@ -44,12 +44,12 @@ The extension from (closed) path to path sequence is straight-forward, so we'll 
         \item[Image] The image of a path sequence $\gamma$ defined as above is:
             $$ \gamma([0,1]) = \bigcup_{k=1}^n{\gamma_k([0,1])} $$
         \item[Winding number] if $\gamma$ is a path sequence and $a\in\mathbb{C}\setminus\gamma([0,1])$,
-            $$\mathrm{ind}(\gamma, a) = \sum_{k=1}^n\mathrm{ind}(\gamma_k, a)$$
+            $$\ind(\gamma, a) = \sum_{k=1}^n\ind(\gamma_k, a)$$
 
         \item[Exterior] 
-            $$\mathrm{Ext}\gamma = \left\lbrace z\in\mathbb{C}\setminus\gamma([0,1]) \vert \mathrm{ind}(\gamma, a) = 0 \right\rbrace$$
+            $$\Ext\gamma = \left\lbrace z\in\mathbb{C}\setminus\gamma([0,1]) \vert \ind(\gamma, a) = 0 \right\rbrace$$
         \item[Interior] 
-            $$\mathrm{Ext}\gamma = \left\lbrace z\in\mathbb{C}\setminus\gamma([0,1]) \vert \mathrm{ind}(\gamma, a) \neq 0 \right\rbrace$$
+            $$\Ext\gamma = \left\lbrace z\in\mathbb{C}\setminus\gamma([0,1]) \vert \ind(\gamma, a) \neq 0 \right\rbrace$$
         \item[Length] 
             $$\ell(\gamma) = \sum_{k=1}^n \ell(\gamma_k)$$
         \item[Line integrals]
@@ -82,9 +82,9 @@ One way of characterizing a singularity could be to study the integral of $f$ "a
 
     Let $a\in\mathbb{C}\setminus\Omega$ be a singularity of $f$.
 
-    If $r>0$ is such that the only singularity in $\mathrm{Int}~\gamma$ is $a$, we define in the residure of $f$ at $a$ as:
+    If $r>0$ is such that the only singularity in $\Int~\gamma$ is $a$, we define in the residure of $f$ at $a$ as:
 
-    $$\mathrm{res}(f, a) = \frac{1}{2i\pi} \int_{a + r[C_+]} f(z)dz$$
+    $$\res(f, a) = \frac{1}{2i\pi} \int_{a + r[C_+]} f(z)dz$$
 \end{defi}
 
 \begin{exo}[$\star$]
@@ -107,8 +107,8 @@ One way of characterizing a singularity could be to study the integral of $f$ "a
 
     Let $\gamma$ be a sequence of rectifiable closed paths of $\Omega$ and $a\in\Omega\setminus\gamma([0,1])$.
 
-    If $A$ is a finite set of isolated singularities of $f$ such that $\mathrm{Int}~\gamma \subset \Omega \cup A$ then:
-    $$\int_\gamma \frac{f(z)}{z-a}dz = 2i\pi \times \sum_{a\in A}\mathrm{ind}(\gamma, a) \times \mathrm{res}(f,a)$$
+    If $A$ is a finite set of isolated singularities of $f$ such that $\Int~\gamma \subset \Omega \cup A$ then:
+    $$\int_\gamma \frac{f(z)}{z-a}dz = 2i\pi \times \sum_{a\in A}\ind(\gamma, a) \times \res(f,a)$$
 \end{thm*}
 
 \begin{note}
@@ -121,7 +121,7 @@ One way of characterizing a singularity could be to study the integral of $f$ "a
 
     Let $\gamma$ be a sequence of rectifiable closed paths of $\Omega$ and $a\in\Omega\setminus\gamma([0,1])$.
 
-    If $\mathrm{Int}~\gamma\subset\Omega$ then:
-    $$\int_\gamma \frac{f(z)}{z-a}dz = 2i\pi \times \mathrm{ind}(\gamma, a) \times f(a)$$
+    If $\Int~\gamma\subset\Omega$ then:
+    $$\int_\gamma \frac{f(z)}{z-a}dz = 2i\pi \times \ind(\gamma, a) \times f(a)$$
 \end{thm*}
 
