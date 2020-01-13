@@ -1,4 +1,4 @@
-# Complex analysis - Study guide and materials
+# Complex analysis - Lecture notes
 
 This repository presents lecture notes for C1223, Mines ParisTech's Complex Analysis class, I helped teach in January 2020.
 
