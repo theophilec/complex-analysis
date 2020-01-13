@@ -1,20 +1,10 @@
 # Complex analysis - Study guide and materials
 
-This repository is based off of materials by S. Boisgérault (Mines ParisTech) for C1223 *Analyse Complexe et Applications* -- aka *Ski Maths* -- for second year graduate students at Mines ParisTech.
+This repository presents lecture notes for C1223, Mines ParisTech's Complex Analysis class, I helped teach in January 2020.
 
-The goal is not to replace the textbook but to offer a concise summary for myself (as a TA) and to the students, after they've taken the course.
+This repository is based off of materials by S. Boisgérault (Mines ParisTech) for C1223 *Analyse Complexe et Applications* -- aka *Ski Maths* -- for second year graduate students at Mines ParisTech. You can find the course page on Oasis for students. All materials are also online [here](https://eul.ink/complex-analysis/).
 
 Same license as the textbook (CC BY-NC-SA 4.0).
-
-## Schedule
-* Chapter 1 Monday 8h - 9h
-* Chapter 2 Monday 17h-18h
-* Chapter 3 Tuesday 8h-9h
-* Chapter 4 Tuesday 17h-18h
-* Chapter 5 Wednesday 8h-9h
-* Chapter 6 Wednesday 17h-18h
-* Chapter 7 Thursday 8h-9h
-* Chapter 8 Thursday 17h-18h
 
 With this in mind, here is the introduction to the text from the introduction of these notes.
 ## C1123 Introduction
