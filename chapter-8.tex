@@ -172,8 +172,146 @@ A useful corollary is:
     Show that the triangular identity $\sin^2 x + \cos^2 x = 1$ extends to the complex plane, in tw different ways.
 \end{exo}
 
+\subsection{Isolated Singularities of a holomorphic function}
+
+\begin{defi}
+    [Typology of isolated singularities]
+
+    Let $\Omega$ be an open subset of $\mathbb{C}$.
+
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function.
+
+    An isolated singularity $c$ of $f$ is:
+
+    \begin{itemize}
+        \item a removable singularity if there is a holomorphic extension of $f$ over $c$. In other words, there is $a: \Omega\cup\lbrace c \rbrace$ holomorphic such that $\forall z \in\Omega, f(z) = a(z) $.
+        \item a pole of multiplicity $p$ for some $p \in \mathbb{N}^*$ if there is an $a\in \mathbb{C}^*$ such that:
+            $$ f(z) \sim \frac{a^*}{(z-c)^p}$$ or equivalently $$f(z)(z-c)^p \sim a^*$$
+        \item an essential singularity otherwise.
+    \end{itemize}
+\end{defi}
+
+First let's characterize removable singularities.
+
+\begin{thm*}
+    [Characterization of Removable Singularities]
+
+    An isolated singularity $c$ of a holomorphic function $f: \Omega \rightarrow \mathbb{C}$ is removable if and only if one of the following conditions holds:
+
+    \begin{enumerate}
+        \item The Laurent expansion of $f$ is some non-empty annulus $A(c, 0, r)$ is a power series (its coefficients $a_n$ are zero for $n<0$).
+        \item The value $f(z)$ has a limit in $\mathbb{C}$ when $z\rightarrow c$.
+        \item The function $f$ is bounded in some non-empty open annulus $A(c, 0, r)$.
+    \end{enumerate}
+\end{thm*}
+
+\begin{proof}
+    We can prove $ (3) \implies (1)$ using the expression of $a_n$.
+\end{proof}
+
+\begin{thm*}
+    [Characterization of Pole Multiplicity]
+
+    An isolated singularity $c$ of a holomorphic function $f: \Omega \rightarrow \mathbb{C}$ is a pole of multiplicity $p$ if and only if one of the following conditions holds:
+    \begin{enumerate}
+        \item The Laurent expansion of $f$ is some non-empty annulus $A(c, 0, r)$ is 
+            $$ f(z) = \sum_{n=-p}^{+\infty} a_n(z-c)^n$$
+            with $ a_{-p} \neq 0$.
+        \item There is a holomorphic function $a: \Omega \rightarrow \mathbb{C}$ such that 
+            $$\forall z \in \Omega, f(z) = \frac{a(z)}{(z-c)^p} $$
+    \end{enumerate}
+\end{thm*}
+
+\begin{thm*}
+    [Characterization of Poles]
+
+    An isolated singularity $c$ of a holomorphic function $f: \Omega \rightarrow \mathbb{C}$ is a pole (of multiplicity $p$) if and only if the following conditions hold:
+    \begin{enumerate}
+        \item $ 1/f $ is defined in some open annulus $A(c, 0, r)$,
+        \item $ 1/f$ has a holomorphic extension to $D(c, r)$
+        \item and $c$ is a zero (of multiplicity $p$) of this extension.
+    \end{enumerate}
+
+    Alternatively, $c$ is a pole of $f$ if and only if
+    $$ |f(z)| \rightarrow + \infty$$ when $$ z \rightarrow c $$
+\end{thm*}
 
 
+\subsection{Computation of residues}
+
+We can use residues to characterize the behaviour of $f$ around its singularities.
+
+\begin{thm*}
+    [Computation of residues]
+    Let $\Omega$ be an open subset of $\mathbb{C}$.
+
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function.
+
+    Let $c$ an isolated singularity of $f$.
+
+    If the Laurent series expansion of $f$ in some non-empty annulus $A(c, 0, r)\subset Omega$ is 
+
+    $$ f(z) = \sum_{n=-\infty}^{+\infty} a_n(z-c)^n $$
+
+    then $$ \res(f, c) = a_{-1} $$
+    
+\end{thm*}
+
+\begin{proof}
+    Calculate formally then justify the series-integral inversion.
+\end{proof}
+
+\begin{thm*}
+    [Residue of Poles]
+    Let $\Omega$ be an open subset of $\mathbb{C}$.
+
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function.
+
+    Let $c$ an isolated singularity of $f$.
+
+    If $c$ is a pole of $f$ whose multiplicity is at most $p$:
+
+    $$\exists a\in\mathbb{C}^*, \lim_{z\rightarrow c}f(z)(z-c)^p = a$$
+
+    then 
+    
+    $$ \res(f, c) = \lim_{z\rightarrow c}{ \frac{1}{(p-1)!}\frac{d^{p-1}}{dz^{p-1}}(f(z)(z-c)^p) }$$
+\end{thm*}
 
 
+In particular we have the following results:
+
+\begin{thm*}
+    [Residue of Simple Poles I]
+    Let $\Omega$ be an open subset of $\mathbb{C}$.
+
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function.
+
+    Let $c$ an isolated singularity of $f$.
+
+    The point $c$ is a simple pole of $f$ if and only if
+    
+    $$\exists a\in\mathbb{C}^*, \lim_{z\rightarrow c}f(z)(z-c) = a$$
+
+    and then
+    
+    $$ \res(f, c) = \lim_{z\rightarrow c}{f(z)(z-c)}$$
+\end{thm*}
+
+\begin{thm*}
+    [Residue of Simple Poles II]
+    Let $\Omega$ be an open subset of $\mathbb{C}$.
+
+    Let $f: \Omega \rightarrow \mathbb{C}$ be a holomorphic function.
+
+    Let $c$ an isolated singularity of $f$.
+
+    If there are two holomorphic functions $g$ and $h$ on $\Omega$ such that 
+
+    $$f = \frac{g}{h}$$
+
+    where $g(c) \neq 0$, $h(c) = 0$, and $h'(c) \neq 0$, then c is a simple pole of $f$ and 
+
+    $$ \res(f, c) = \frac{g(c)}{h'(c)}$$
+\end{thm*}
 
